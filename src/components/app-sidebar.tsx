@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { LayoutDashboard, Mail, ListTodo, MessageSquare, Sparkles } from "lucide-react";
+import { LayoutDashboard, Mail, ListTodo, MessageSquare } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -11,6 +11,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import logo from "@/assets/logo.png";
 
 const items = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
@@ -26,10 +27,19 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarHeader>
         <div className="flex items-center gap-2 px-2 py-2">
-          <div className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-primary text-primary-foreground">
-            <Sparkles className="h-4 w-4" />
+          <img
+            src={logo}
+            alt="Work Fast AI logo"
+            width={32}
+            height={32}
+            className="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5"
+          />
+          <div className="flex min-w-0 flex-col leading-tight">
+            <span className="truncate text-sm font-bold tracking-tight">Work Fast AI</span>
+            <span className="truncate text-[10px] uppercase tracking-wider text-muted-foreground">
+              Productivity
+            </span>
           </div>
-          <span className="truncate text-sm font-semibold">AI Workplace</span>
         </div>
       </SidebarHeader>
       <SidebarContent>
