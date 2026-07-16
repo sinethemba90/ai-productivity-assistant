@@ -90,10 +90,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Draft emails, plan tasks, auto-schedule 48h follow-ups, and chat with your AI workplace assistant.",
+          "Work Fast AI: draft emails, plan tasks, auto-schedule 48h follow-ups, and chat with your AI workplace assistant.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Work Fast AI — Workplace Productivity" },
+      { name: "twitter:description", content: "Work Fast AI: draft emails, plan tasks, auto-schedule 48h follow-ups, and chat with your AI workplace assistant." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a93610a2-5d36-47be-90d3-7f7f6d477336/id-preview-68379dc4--0b84c11d-65ee-4b68-9d78-fd4f1a9ff151.lovable.app-1784243155701.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a93610a2-5d36-47be-90d3-7f7f6d477336/id-preview-68379dc4--0b84c11d-65ee-4b68-9d78-fd4f1a9ff151.lovable.app-1784243155701.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
