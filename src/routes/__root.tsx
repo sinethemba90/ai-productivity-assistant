@@ -80,17 +80,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AI Workplace Productivity Assistant" },
+      { title: "Work Fast AI — Workplace Productivity" },
       {
         name: "description",
         content:
-          "Generate professional emails, plan your day, and chat with an AI workplace assistant.",
+          "Work Fast AI: draft emails, plan tasks, auto-schedule 48h follow-ups, and chat with your AI workplace assistant.",
       },
-      { property: "og:title", content: "AI Workplace Productivity Assistant" },
+      { property: "og:title", content: "Work Fast AI — Workplace Productivity" },
       {
         property: "og:description",
         content:
-          "Generate professional emails, plan your day, and chat with an AI workplace assistant.",
+          "Draft emails, plan tasks, auto-schedule 48h follow-ups, and chat with your AI workplace assistant.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -131,9 +131,7 @@ function RootComponent() {
           <div className="flex flex-1 flex-col">
             <header className="flex h-14 shrink-0 items-center gap-3 border-b bg-background px-4">
               <SidebarTrigger />
-              <h1 className="text-sm font-semibold sm:text-base">
-                AI Workplace Productivity Assistant
-              </h1>
+              <h1 className="text-sm font-semibold sm:text-base">Work Fast AI</h1>
             </header>
             <main className="flex-1 bg-muted/20">
               <Outlet />

@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { generateText } from "ai";
+import { generateText, generateObject } from "ai";
 import { z } from "zod";
 import { createLovableAiGatewayProvider } from "./ai-gateway.server";
 
@@ -30,6 +30,66 @@ Recipient: ${data.recipient}
 Subject: ${data.subject}
 Purpose: ${data.purpose}
 Tone: ${data.tone}`,
+    });
+    return { text };
+  });
+
+const AnalyzeInput = z.object({
+  recipient: z.string(),
+  subject: z.string(),
+  emailText: z.string().min(1),
+});
+
+const AnalyzeSchema = z.object({
+  projectName: z
+    .string()
+    .describe(
+      "The main project, initiative, or deliverable discussed. Empty string if none.",
+    ),
+  tasks: z
+    .array(z.string())
+    .describe(
+      "Concrete action items or to-dos mentioned or implied in the email, phrased as short imperative task titles. Empty if none.",
+    ),
+});
+
+export const analyzeEmail = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) => AnalyzeInput.parse(data))
+  .handler(async ({ data }) => {
+    const { object } = await generateObject({
+      model: getModel(),
+      schema: AnalyzeSchema,
+      system:
+        "Extract the discussed project name and any actionable tasks from a workplace email. Be conservative: only include real, concrete tasks. Keep task titles under 12 words.",
+      prompt: `Subject: ${data.subject}
+Recipient: ${data.recipient}
+
+Email:
+${data.emailText}`,
+    });
+    return object;
+  });
+
+const FollowUpInput = z.object({
+  recipient: z.string().min(1),
+  originalSubject: z.string().min(1),
+  project: z.string().default(""),
+  originalEmail: z.string().min(1),
+});
+
+export const generateFollowUpEmail = createServerFn({ method: "POST" })
+  .inputValidator((data: unknown) => FollowUpInput.parse(data))
+  .handler(async ({ data }) => {
+    const { text } = await generateText({
+      model: getModel(),
+      system:
+        "You are a professional email writer. Draft a polite, concise 48-hour follow-up email that references the earlier message, asks for a status update, and offers to help unblock. Return only the email text.",
+      prompt: `Original recipient: ${data.recipient}
+Original subject: ${data.originalSubject}
+Project: ${data.project || "(not specified)"}
+
+Original email:
+${data.originalEmail}`,
     });
     return { text };
   });

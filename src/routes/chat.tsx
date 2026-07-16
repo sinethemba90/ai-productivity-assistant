@@ -13,7 +13,7 @@ import { Copy, RefreshCw, Loader2, Send, Trash2, User, Sparkles } from "lucide-r
 export const Route = createFileRoute("/chat")({
   head: () => ({
     meta: [
-      { title: "AI Chat Assistant — AI Workplace" },
+      { title: "AI Chat Assistant — Work Fast AI" },
       {
         name: "description",
         content: "Ask workplace questions and get instant AI-powered answers.",
