@@ -149,4 +149,4 @@ No personal information, user accounts, or chat history is stored by this applic
 
 ## Author
 
-Developed as part of an AI-powered workplace productivity project demonstrating modern web application design, responsive UI/UX principles, and practical AI integration.
+Sinethemba Nondabula
